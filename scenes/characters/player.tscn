@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cecwi0bgjtw0n"]
+
+[ext_resource type="Script" uid="uid://cu80qmguh8cuy" path="res://scripts/characters/player.gd" id="1_rp718"]
+[ext_resource type="Texture2D" uid="uid://i74rppmc0wgu" path="res://icon.svg" id="2_yewv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yewv4"]
+size = Vector2(20, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rp718"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
+
+[node name="Player" type="CharacterBody2D" unique_id=515009566]
+script = ExtResource("1_rp718")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1827885106]
+texture = ExtResource("2_yewv4")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1609958889]
+shape = SubResource("RectangleShape2D_yewv4")
+
+[node name="CrouchCollision" type="CollisionShape2D" parent="." unique_id=2021927248]
+scale = Vector2(20, 16)
+shape = SubResource("RectangleShape2D_rp718")
+
+[node name="GunPoint" type="Marker2D" parent="." unique_id=746266631]
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1431167414]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1903000663]
+shape = SubResource("RectangleShape2D_dyp2m")

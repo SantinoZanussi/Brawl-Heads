@@ -1,0 +1,297 @@
+[gd_scene format=3 uid="uid://ctxx2m6pu28e3"]
+
+[ext_resource type="Script" uid="uid://crb7imtq586f" path="res://scripts/ui/main_menu.gd" id="1_6jbdy"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_vjtqc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jbdy"]
+bg_color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84313726, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwbf0"]
+bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84313726, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ysvc"]
+bg_color = Color(0.12156863, 0.1764706, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9607843, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpiny"]
+bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhu4a"]
+bg_color = Color(0.12156863, 0.1764706, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9607843, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2per"]
+bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mi0g"]
+bg_color = Color(0.12156863, 0.1764706, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9607843, 1, 1)
+
+[sub_resource type="Animation" id="Animation_6jbdy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iwbf0"]
+resource_name = "intro"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.13333334, 0.33333334, 0.33333334, 1), Color(0.6666667, 0.6666667, 0.6666667, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ysvc"]
+_data = {
+&"RESET": SubResource("Animation_6jbdy"),
+&"intro": SubResource("Animation_iwbf0")
+}
+
+[node name="Node2D" type="Node2D" unique_id=2074290839]
+
+[node name="MainMenu" type="Control" parent="." unique_id=1498508039]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jbdy")
+
+[node name="BG" type="ColorRect" parent="MainMenu" unique_id=1680372713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="PixelParticles" type="CPUParticles2D" parent="MainMenu" unique_id=631998322]
+position = Vector2(240, 340)
+amount = 30
+lifetime = 12.0
+direction = Vector2(1, -1)
+gravity = Vector2(0, -30)
+initial_velocity_min = 15.0
+initial_velocity_max = 40.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Screen" type="PanelContainer" parent="MainMenu" unique_id=2132483162]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jbdy")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Screen" unique_id=724742223]
+layout_mode = 2
+size_flags_vertical = 9
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Screen/MarginContainer" unique_id=406156573]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TopBar" type="HBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=100471019]
+layout_mode = 2
+
+[node name="PlayerDots" type="HBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar" unique_id=1370106438]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Dot1" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1383506212]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Dot2" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1420459233]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+color = Color(0.6666667, 1, 0, 1)
+
+[node name="Dot3" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1873498297]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+color = Color(1, 0.1764706, 0.47058824, 1)
+
+[node name="Dot4" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1173891847]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+color = Color(0, 0.9607843, 1, 1)
+
+[node name="Version" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar" unique_id=418777404]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 9
+text = "v0.1"
+horizontal_alignment = 2
+
+[node name="TitleArea" type="VBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=165407882]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1741790015]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 64
+text = "BRAWL HEADS"
+horizontal_alignment = 1
+
+[node name="TitleUnderLine" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=125975127]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Subtitle" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1592108809]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 12
+text = "PARTY BRAWLER · LOCAL & LAN"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=1438135708]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PressStart" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=678545789]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 9
+text = "— PRESIONÁ ENTER —"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=762799370]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BtnPlay" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=621564823]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwbf0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ysvc")
+text = "▶  JUGAR"
+
+[node name="BtnSettings" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=698558574]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9411765, 0.91764706, 0.8392157, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpiny")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bhu4a")
+text = "⚙  AJUSTES"
+
+[node name="BtnCredits" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=2004828803]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9411765, 0.91764706, 0.8392157, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_e2per")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7mi0g")
+text = "★  CRÉDITOS"
+
+[node name="BottomBar" type="HBoxContainer" parent="MainMenu/Screen" unique_id=1251617226]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Copyright" type="Label" parent="MainMenu/Screen/BottomBar" unique_id=1774321522]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 9
+text = "© BRAWL HEADS 2025"
+
+[node name="Engine" type="Label" parent="MainMenu/Screen/BottomBar" unique_id=1920315853]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 9
+text = "GODOT 4"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu" unique_id=559031944]
+libraries/ = SubResource("AnimationLibrary_2ysvc")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1309519027]

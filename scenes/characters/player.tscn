@@ -6,9 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yewv4"]
 size = Vector2(20, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rp718"]
-size = Vector2(20, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
 
 [node name="Player" type="CharacterBody2D" unique_id=515009566]
@@ -19,10 +16,6 @@ texture = ExtResource("2_yewv4")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1609958889]
 shape = SubResource("RectangleShape2D_yewv4")
-
-[node name="CrouchCollision" type="CollisionShape2D" parent="." unique_id=2021927248]
-scale = Vector2(20, 16)
-shape = SubResource("RectangleShape2D_rp718")
 
 [node name="GunPoint" type="Marker2D" parent="." unique_id=746266631]
 

@@ -24,7 +24,8 @@ var held_weapon = null
 
 # ─────────────────────────────────────────────────────────────
 func _ready():
-	crouch_collision.disabled = true
+	#crouch_collision.disabled = true
+	pass
 
 func _physics_process(delta: float):
 	if is_dead:
@@ -66,12 +67,25 @@ func _handle_crouch():
 	
 	if want_crouch and not is_crouching and is_on_floor():
 		is_crouching = true
-		stand_collision.disabled = true
-		crouch_collision.disabled = false
+		var shape = stand_collision.shape as RectangleShape2D
+		shape.size = Vector2(20, 16)
+		stand_collision.position.y = 6
 	elif not want_crouch and is_crouching:
 		is_crouching = false
-		stand_collision.disabled = false
-		crouch_collision.disabled = true
+		var shape = stand_collision.shape as RectangleShape2D
+		shape.size = Vector2(20, 28)
+		stand_collision.position.y = 0
+	#var want_crouch := _is_pressed("duck")
+	#
+	#if want_crouch and not is_crouching and is_on_floor():
+		#is_crouching = true
+		#stand_collision.disabled = true
+		#crouch_collision.disabled = false
+	#elif not want_crouch and is_crouching:
+		#is_crouching = false
+		#stand_collision.disabled = false
+		#crouch_collision.disabled = true
+	
 
 # ─── Dirección que mira ──────────────────────────────────────
 func _update_facing():

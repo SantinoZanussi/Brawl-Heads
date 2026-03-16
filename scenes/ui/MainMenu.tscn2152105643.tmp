@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crb7imtq586f" path="res://scripts/ui/main_menu.gd" id="1_6jbdy"]
 [ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_vjtqc"]
-[ext_resource type="Shader" uid="uid://d24piv6k4nqcj" path="res://scenes/shaders/title_shader.gdshader" id="3_2ysvc"]
-[ext_resource type="Script" uid="uid://cx0k8n0mpmv6r" path="res://scripts/ui/particle_layer.gd" id="3_iwbf0"]
-[ext_resource type="Script" uid="uid://dax31elvar1kf" path="res://scripts/ui/btn_play.gd" id="4_bhu4a"]
-[ext_resource type="Shader" uid="uid://cjh2qhefbje1v" path="res://scenes/shaders/button_shader.gdshader" id="4_xpiny"]
+[ext_resource type="Script" uid="uid://cx0k8n0mpmv6r" path="res://scenes/ui/particle_layer.gd" id="3_iwbf0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jbdy"]
 bg_color = Color(0.101960786, 0.101960786, 0.18039216, 1)
@@ -15,11 +12,6 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 0.84313726, 0, 1)
 corner_detail = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpiny"]
-shader = ExtResource("3_2ysvc")
-shader_parameter/glow_intensity = 1.650000078375
-shader_parameter/glow_color = Color(1, 0.84313726, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwbf0"]
 bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
@@ -37,11 +29,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.9607843, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhu4a"]
-shader = ExtResource("4_xpiny")
-shader_parameter/glow_intensity = 4.00000019
-shader_parameter/glow_color = Color(1, 0.84313726, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpiny"]
 bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
@@ -215,7 +202,6 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1741790015]
-material = SubResource("ShaderMaterial_xpiny")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("1_vjtqc")
@@ -263,22 +249,7 @@ theme_override_fonts/font = ExtResource("1_vjtqc")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_iwbf0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2ysvc")
-text = "
-"
-script = ExtResource("4_bhu4a")
-
-[node name="Label" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay" unique_id=945730073]
-material = SubResource("ShaderMaterial_bhu4a")
-custom_minimum_size = Vector2(380, 40)
-layout_mode = 0
-offset_right = 378.0
-offset_bottom = 46.0
-theme_override_colors/font_color = Color(1, 0.8509804, 0, 1)
-theme_override_fonts/font = ExtResource("1_vjtqc")
-theme_override_font_sizes/font_size = 16
 text = "▶  JUGAR"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BtnSettings" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=698558574]
 custom_minimum_size = Vector2(380, 48)
@@ -325,8 +296,8 @@ text = "GODOT 4"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu" unique_id=559031944]
 libraries/ = SubResource("AnimationLibrary_2ysvc")
 
-[node name="ParticleLayer" type="Node2D" parent="MainMenu" unique_id=1353752763]
-position = Vector2(-650, -150)
+[node name="ParticleLayer" type="CanvasLayer" parent="MainMenu" unique_id=1587257205]
+layer = -1
 script = ExtResource("3_iwbf0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1309519027]

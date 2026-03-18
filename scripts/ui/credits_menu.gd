@@ -14,10 +14,7 @@ const C_MAGENTA     := Color("#FF2D78")
 const C_ORANGE      := Color("#FF6B35")
 
 # ─── Nodos UI ────────────────────────────────────────────────
-@onready var btn_play     = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay
-@onready var btn_settings = $Screen/MarginContainer/VBoxContainer/Buttons/BtnSettings
-@onready var btn_credits  = $Screen/MarginContainer/VBoxContainer/Buttons/BtnCredits
-@onready var press_start  = $Screen/MarginContainer/VBoxContainer/PressStart
+@onready var btn_back     = $Screen/MarginContainer/VBoxContainer/Buttons/BtnBack
 @onready var title_label  = $Screen/MarginContainer/VBoxContainer/TitleArea/Title
 @onready var screen       = $Screen
 
@@ -27,22 +24,26 @@ var glow_time: float = 0.0
 # ─── Scanlines ───────────────────────────────────────────────
 var scanline_canvas: ColorRect
 
-# ─────────────────────────────────────────────────────────────
-func _ready():
-	press_start.visible = true
-	press_start.custom_minimum_size = Vector2(0, 20)
-	
-	btn_play.pressed.connect(_on_play_pressed)
-	btn_settings.pressed.connect(_on_settings_pressed)
-	btn_credits.pressed.connect(_on_credits_pressed)
+func _ready() -> void:
+	btn_back.pressed.connect(_on_back_pressed)
 	
 	_setup_scanlines()
-	_setup_button_hover()
 	
-	_blink_press_start()
 	move_child(scanline_canvas, get_child_count() - 1)
 
-# ─── Scanlines ───────────────────────────────────────────────
+# ─── Loop principal ──────────────────────────────────────────
+func _process(delta: float):
+	_update_title_glow(delta)
+	queue_redraw()
+
+# ─── Glow del título ─────────────────────────────────────────
+func _update_title_glow(delta: float):
+	glow_time += delta
+	var glow_alpha := (sin(glow_time * 1.5) + 1.0) / 2.0
+	var base_color := C_YELLOW
+	base_color.a = 0.6 + glow_alpha * 0.4
+	title_label.add_theme_color_override("font_color", base_color)
+
 func _setup_scanlines():
 	scanline_canvas = ColorRect.new()
 	scanline_canvas.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -65,7 +66,7 @@ void fragment() {
 
 # ─── Hover de botones con efecto cyan ────────────────────────
 func _setup_button_hover():
-	var buttons = [btn_play, btn_settings, btn_credits]
+	var buttons = [btn_back]
 	for btn in buttons:
 		btn.mouse_entered.connect(_on_btn_hover.bind(btn))
 		btn.mouse_exited.connect(_on_btn_unhover.bind(btn))
@@ -98,33 +99,5 @@ func _on_btn_unhover(btn: Button):
 		)
 	btn.modulate = Color("#F0EAD6")
 
-# ─── Glow del título ─────────────────────────────────────────
-func _update_title_glow(delta: float):
-	glow_time += delta
-	var glow_alpha := (sin(glow_time * 1.5) + 1.0) / 2.0
-	var base_color := C_YELLOW
-	base_color.a = 0.6 + glow_alpha * 0.4
-	title_label.add_theme_color_override("font_color", base_color)
-
-# ─── Loop principal ──────────────────────────────────────────
-func _process(delta: float):
-	_update_title_glow(delta)
-	queue_redraw()
-
-# ─── Parpadeo ────────────────────────────────────────────────
-func _blink_press_start():
-	while true:
-		press_start.modulate.a = 1.0
-		await get_tree().create_timer(0.5).timeout
-		press_start.modulate.a = 0.0
-		await get_tree().create_timer(0.5).timeout
-
-# ─── Navegación ──────────────────────────────────────────────
-func _on_play_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/LobbyMenu.tscn")
-
-func _on_settings_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/SettingsMenu.tscn")
-
-func _on_credits_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/CreditsMenu.tscn")
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn")

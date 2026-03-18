@@ -1,3 +1,252 @@
 [gd_scene format=3 uid="uid://beafyt3uphe7g"]
 
+[ext_resource type="Script" uid="uid://d2puspxshkhjn" path="res://scripts/ui/credits_menu.gd" id="1_8kb6f"]
+[ext_resource type="Shader" uid="uid://d24piv6k4nqcj" path="res://scenes/shaders/title_shader.gdshader" id="1_j1k52"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_8kb6f"]
+[ext_resource type="Script" uid="uid://cx0k8n0mpmv6r" path="res://scripts/ui/particle_layer.gd" id="3_krh5m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk5rt"]
+bg_color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84313726, 0, 1)
+corner_detail = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdfjj"]
+shader = ExtResource("1_j1k52")
+shader_parameter/glow_color = Color(1, 0.84313726, 0, 0.7058824)
+shader_parameter/glow_size = 3.0000001425
+shader_parameter/glow_strength = 2.50000011875
+shader_parameter/threshold = 0.1370000065075
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m3d"]
+bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa3hu"]
+bg_color = Color(0.12156863, 0.1764706, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9607843, 1, 1)
+
 [node name="Node2D" type="Node2D" unique_id=703295022]
+
+[node name="CreditsMenu" type="Control" parent="." unique_id=1819896235]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8kb6f")
+
+[node name="BG" type="ColorRect" parent="CreditsMenu" unique_id=1135826690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="Screen" type="PanelContainer" parent="CreditsMenu" unique_id=1178551188]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kk5rt")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsMenu/Screen" unique_id=614601465]
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer" unique_id=1925668613]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TitleArea" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer" unique_id=557439812]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1857467156]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vdfjj")
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93333334, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 64
+text = "CRÉDITOS"
+horizontal_alignment = 1
+
+[node name="TitleUnderLine" type="ColorRect" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1563380634]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Subtitle" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1557467089]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 12
+text = "DESARROLLADORES"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer" unique_id=1381602318]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="DevArea" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer" unique_id=682379303]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Dev1" type="ColorRect" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea" unique_id=1041127102]
+custom_minimum_size = Vector2(500, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+
+[node name="TextArea" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev1" unique_id=1976960330]
+layout_mode = 0
+offset_right = 501.0
+offset_bottom = 90.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev1/TextArea" unique_id=630159643]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vdfjj")
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93333334, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 14
+text = "
+JUAN MANUEL GOIBURU"
+horizontal_alignment = 1
+
+[node name="TitleUnderLine" type="ColorRect" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev1/TextArea" unique_id=532446650]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Subtitle" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev1/TextArea" unique_id=1610019019]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 12
+text = "DISEÑADOR"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea" unique_id=1416920428]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Dev2" type="ColorRect" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea" unique_id=413432137]
+custom_minimum_size = Vector2(500, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+
+[node name="TextArea" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev2" unique_id=308635432]
+layout_mode = 0
+offset_right = 501.0
+offset_bottom = 90.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev2/TextArea" unique_id=1452659974]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vdfjj")
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93333334, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 14
+text = "
+SANTINO ZANUSSI"
+horizontal_alignment = 1
+
+[node name="TitleUnderLine" type="ColorRect" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev2/TextArea" unique_id=290937769]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Subtitle" type="Label" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/DevArea/Dev2/TextArea" unique_id=846825079]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 12
+text = "DESARROLLADOR"
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer" unique_id=844645137]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer" unique_id=1952790110]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="CreditsMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=1557705249]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9411765, 0.91764706, 0.8392157, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1m3d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xa3hu")
+text = "⬅ VOLVER"
+
+[node name="BottomBar" type="HBoxContainer" parent="CreditsMenu/Screen/MarginContainer" unique_id=20816542]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Copyright-Version" type="Label" parent="CreditsMenu/Screen/MarginContainer/BottomBar" unique_id=387718954]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43411303, 0.43428433, 0.51786786, 1)
+theme_override_fonts/font = ExtResource("2_8kb6f")
+theme_override_font_sizes/font_size = 9
+text = "© BRAWL HEADS 2026 - GODOT 4 - v1.0"
+
+[node name="ParticleLayer" type="Node2D" parent="CreditsMenu" unique_id=564507673]
+position = Vector2(-650, -150)
+script = ExtResource("3_krh5m")
+
+[node name="PixelParticles" type="CPUParticles2D" parent="CreditsMenu" unique_id=183367626]
+position = Vector2(240, 340)
+amount = 30
+lifetime = 12.0
+direction = Vector2(1, -1)
+gravity = Vector2(0, -30)
+initial_velocity_min = 15.0
+initial_velocity_max = 40.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=657236803]
+position = Vector2(20, 20)

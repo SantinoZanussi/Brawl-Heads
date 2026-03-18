@@ -16,10 +16,12 @@ border_width_bottom = 2
 border_color = Color(1, 0.84313726, 0, 1)
 corner_detail = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpiny"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2per"]
 shader = ExtResource("3_2ysvc")
-shader_parameter/glow_intensity = 1.650000078375
-shader_parameter/glow_color = Color(1, 0.84313726, 0, 1)
+shader_parameter/glow_color = Color(1, 0.84313726, 0, 0.7058824)
+shader_parameter/glow_size = 3.0000001425
+shader_parameter/glow_strength = 2.50000011875
+shader_parameter/threshold = 0.1370000065075
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwbf0"]
 bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
@@ -76,43 +78,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.9607843, 1, 1)
-
-[sub_resource type="Animation" id="Animation_6jbdy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Screen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_iwbf0"]
-resource_name = "intro"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Screen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.13333334, 0.33333334, 0.33333334, 1), Color(0.6666667, 0.6666667, 0.6666667, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ysvc"]
-_data = {
-&"RESET": SubResource("Animation_6jbdy"),
-&"intro": SubResource("Animation_iwbf0")
-}
 
 [node name="Node2D" type="Node2D" unique_id=2074290839]
 position = Vector2(639, 367)
@@ -175,49 +140,16 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="TopBar" type="HBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=100471019]
-layout_mode = 2
-
-[node name="PlayerDots" type="HBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar" unique_id=1370106438]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Dot1" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1383506212]
-custom_minimum_size = Vector2(5, 5)
-layout_mode = 2
-color = Color(1, 0.84313726, 0, 1)
-
-[node name="Dot2" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1420459233]
-custom_minimum_size = Vector2(5, 5)
-layout_mode = 2
-color = Color(0.6666667, 1, 0, 1)
-
-[node name="Dot3" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1873498297]
-custom_minimum_size = Vector2(5, 5)
-layout_mode = 2
-color = Color(1, 0.1764706, 0.47058824, 1)
-
-[node name="Dot4" type="ColorRect" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar/PlayerDots" unique_id=1173891847]
-custom_minimum_size = Vector2(5, 5)
-layout_mode = 2
-color = Color(0, 0.9607843, 1, 1)
-
-[node name="Version" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TopBar" unique_id=418777404]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
-theme_override_fonts/font = ExtResource("1_vjtqc")
-theme_override_font_sizes/font_size = 9
-text = "v0.1"
-horizontal_alignment = 2
-
 [node name="TitleArea" type="VBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=165407882]
 layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/TitleArea" unique_id=1741790015]
-material = SubResource("ShaderMaterial_xpiny")
+texture_filter = 1
+material = SubResource("ShaderMaterial_e2per")
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_colors/font_color = Color(1, 0.93333334, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("1_vjtqc")
 theme_override_font_sizes/font_size = 64
 text = "BRAWL HEADS"
@@ -245,7 +177,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
 theme_override_fonts/font = ExtResource("1_vjtqc")
 theme_override_font_sizes/font_size = 9
-text = "— PRESIONÁ ENTER —"
+text = "— PRESIONÁ JUGAR —"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="MainMenu/Screen/MarginContainer/VBoxContainer" unique_id=762799370]
@@ -304,26 +236,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_e2per")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7mi0g")
 text = "★  CRÉDITOS"
 
-[node name="BottomBar" type="HBoxContainer" parent="MainMenu/Screen" unique_id=1251617226]
+[node name="BottomBar" type="HBoxContainer" parent="MainMenu/Screen/MarginContainer" unique_id=1251617226]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Copyright" type="Label" parent="MainMenu/Screen/BottomBar" unique_id=1774321522]
+[node name="Copyright-Version" type="Label" parent="MainMenu/Screen/MarginContainer/BottomBar" unique_id=1774321522]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+theme_override_colors/font_color = Color(0.43411303, 0.43428433, 0.51786786, 1)
 theme_override_fonts/font = ExtResource("1_vjtqc")
 theme_override_font_sizes/font_size = 9
-text = "© BRAWL HEADS 2025"
-
-[node name="Engine" type="Label" parent="MainMenu/Screen/BottomBar" unique_id=1920315853]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
-theme_override_fonts/font = ExtResource("1_vjtqc")
-theme_override_font_sizes/font_size = 9
-text = "GODOT 4"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu" unique_id=559031944]
-libraries/ = SubResource("AnimationLibrary_2ysvc")
+text = "© BRAWL HEADS 2026 - GODOT 4 - v1.0"
 
 [node name="ParticleLayer" type="Node2D" parent="MainMenu" unique_id=1353752763]
 position = Vector2(-650, -150)

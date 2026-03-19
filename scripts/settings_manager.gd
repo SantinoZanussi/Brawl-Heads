@@ -28,11 +28,11 @@ func apply_all() -> void:
 
 func apply_display() -> void:
 	var d: Dictionary = settings["display"]
-	print("=== apply_display ===")
-	print("fullscreen: ", d["fullscreen"])
-	print("resolution: ", d["resolution"])
-	print("vsync: ", d["vsync"])
-	print("fps_limit: ", d["fps_limit"])
+	#print("=== apply_display ===")
+	#print("fullscreen: ", d["fullscreen"])
+	#print("resolution: ", d["resolution"])
+	#print("vsync: ", d["vsync"])
+	#print("fps_limit: ", d["fps_limit"])
 	if d["fullscreen"]:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -43,14 +43,14 @@ func apply_display() -> void:
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = d["fps_limit"]
-	print("Modo ventana actual: ", DisplayServer.window_get_mode())
+	#print("Modo ventana actual: ", DisplayServer.window_get_mode())
 
 func apply_audio() -> void:
 	var a: Dictionary = settings["audio"]
-	print("=== apply_audio ===")
-	print("master: ", a["master"], " bus index: ", AudioServer.get_bus_index("Master"))
-	print("music:  ", a["music"],  " bus index: ", AudioServer.get_bus_index("Music"))
-	print("sfx:    ", a["sfx"],    " bus index: ", AudioServer.get_bus_index("SFX"))
+	#print("=== apply_audio ===")
+	#print("master: ", a["master"], " bus index: ", AudioServer.get_bus_index("Master"))
+	#print("music:  ", a["music"],  " bus index: ", AudioServer.get_bus_index("Music"))
+	#print("sfx:    ", a["sfx"],    " bus index: ", AudioServer.get_bus_index("SFX"))
 	_set_bus_volume("Master", a["master"])
 	_set_bus_volume("Music",  a["music"])
 	_set_bus_volume("SFX",    a["sfx"])
@@ -62,11 +62,32 @@ func _set_bus_volume(bus_name: String, linear: float) -> void:
 		return
 	AudioServer.set_bus_volume_db(idx, linear_to_db(linear))
 
+func get_action_key(action: String) -> String:
+	if not InputMap.has_action(action):
+		return "---"
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey:
+			return OS.get_keycode_string(event.physical_keycode)
+	return "---"
+
+func rebind_action(action: String, new_event: InputEventKey) -> void:
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, new_event)
+	if not settings.has("bindings"):
+		settings["bindings"] = {}
+	settings["bindings"][action] = new_event.physical_keycode
+
 func save_settings() -> void:
 	config.set_value("meta", "version", SETTINGS_VERSION)
 	for section in settings.keys():
+		if section == "bindings":
+			continue
 		for key in settings[section].keys():
 			config.set_value(section, key, settings[section][key])
+	# Bindings aparte
+	if settings.has("bindings"):
+		for action in settings["bindings"].keys():
+			config.set_value("bindings", action, settings["bindings"][action])
 	config.save(SAVE_PATH)
 
 func load_settings() -> void:
@@ -80,3 +101,13 @@ func load_settings() -> void:
 		for key in settings[section].keys():
 			if config.has_section_key(section, key):
 				settings[section][key] = config.get_value(section, key)
+	# Cargar bindings al InputMap
+	if config.has_section("bindings"):
+		for action in config.get_section_keys("bindings"):
+			if not InputMap.has_action(action):
+				continue
+			var keycode: int = config.get_value("bindings", action)
+			var event := InputEventKey.new()
+			event.physical_keycode = keycode
+			InputMap.action_erase_events(action)
+			InputMap.action_add_event(action, event)

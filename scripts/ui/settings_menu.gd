@@ -15,20 +15,118 @@ extends Control
 @onready var btn_aplicar: Button = $Screen/MarginContainer/VBoxContainer/Buttons/BtnApply
 @onready var btn_volver:  Button = $Screen/MarginContainer/VBoxContainer/Buttons/BtnBack
 
+# ── CONTROLES ───────────────────────────────────────────────────
+@onready var bindings_container: Node = $Screen/MarginContainer/VBoxContainer/TabContainer/Controles
+
 const RESOLUTIONS := [
 	Vector2i(1920, 1080),
 	Vector2i(1280, 720),
 	Vector2i(1024, 768),
 	Vector2i(800, 600),
 ]
-const FPS_OPTIONS := [30, 60, 120, 0]  # 0 = sin límite
-const FPS_LABELS  := ["30", "60", "120", "Sin límite"]
+
+const ACTIONS := {
+	"Mover a la izquierda": "p1_left",
+	"Mover a la derecha":   "p1_right",
+	"Saltar":          "p1_jump",
+	"Agacharse":       "p1_duck",
+	"Disparar":        "p1_shoot",
+	"Agarrar":         "p1_pickup",
+	"Apuntar arriba":  "p1_aim_up",
+}
+
+var _active_btn: Button = null
+var _active_action: String = ""
+
+const FPS_OPTIONS := [30, 60]  # 0 = sin límite
+const FPS_LABELS  := ["30", "60"]
 
 func _ready() -> void:
 	_build_option_lists()
 	_load_into_ui()
+	_build_bindings()
 	_connect_signals()
+	set_process_unhandled_input(false)
 
+func _build_bindings() -> void:
+	for child in bindings_container.get_children():
+		child.queue_free()
+
+	# Cargás la fuente que ya usás en el resto del juego
+	var font: Font = preload("res://assets/fonts/PressStart2P-Regular.ttf")
+
+	for display_name in ACTIONS.keys():
+		var action: String = ACTIONS[display_name]
+
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+
+		# ── LABEL ──────────────────────────────────────
+		var lbl := Label.new()
+		lbl.text = display_name
+		lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+		lbl.add_theme_font_override("font", font)
+		lbl.add_theme_font_size_override("font_size", 12)
+
+		lbl.add_theme_color_override("font_color", Color("#FFFFFF"))
+
+		lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+		# ── BUTTON ─────────────────────────────────────
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(90, 30)
+		btn.text = SettingsManager.get_action_key(action)	
+
+		btn.add_theme_font_override("font", font)
+		btn.add_theme_font_size_override("font_size", 12)
+
+		btn.add_theme_color_override("font_color",         Color("#FFD700"))
+		btn.add_theme_color_override("font_hover_color",   Color("#FFFFFF"))
+		btn.add_theme_color_override("font_pressed_color", Color("#AAAAAA"))
+
+		var style := StyleBoxFlat.new()
+		style.bg_color          = Color("#1a2a4a")
+		style.border_color      = Color("#FFD700")
+		style.set_border_width_all(1)
+		style.set_corner_radius_all(4)
+		btn.add_theme_stylebox_override("normal", style)
+
+		var style_hover := StyleBoxFlat.new()
+		style_hover.bg_color     = Color("#2a3a6a")
+		style_hover.border_color = Color("#FFD700")
+		style_hover.set_border_width_all(1)
+		style_hover.set_corner_radius_all(4)
+		btn.add_theme_stylebox_override("hover", style_hover)
+
+		btn.pressed.connect(_on_bind_btn_pressed.bind(action, btn))
+
+		row.add_child(lbl)
+		row.add_child(btn)
+		bindings_container.add_child(row)
+
+func _on_bind_btn_pressed(action: String, btn: Button) -> void:
+	if _active_btn != null:
+		_active_btn.text = SettingsManager.get_action_key(_active_action)
+	_active_btn    = btn
+	_active_action = action
+	btn.text       = "..."
+	set_process_unhandled_input(true)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _active_btn == null:
+		return
+	if not event is InputEventKey or not event.pressed:
+		return
+	if event.physical_keycode == KEY_ESCAPE:
+		_active_btn.text = SettingsManager.get_action_key(_active_action)
+	else:
+		SettingsManager.rebind_action(_active_action, event as InputEventKey)
+		_active_btn.text = SettingsManager.get_action_key(_active_action)
+	_active_btn    = null
+	_active_action = ""
+	set_process_unhandled_input(false)
+	get_viewport().set_input_as_handled()
 func _build_option_lists() -> void:
 	opt_resolution.clear()
 	for r in RESOLUTIONS:

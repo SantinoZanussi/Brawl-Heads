@@ -1,25 +1,137 @@
 [gd_scene format=3 uid="uid://cecwi0bgjtw0n"]
 
 [ext_resource type="Script" uid="uid://cu80qmguh8cuy" path="res://scripts/characters/player.gd" id="1_rp718"]
-[ext_resource type="Texture2D" uid="uid://i74rppmc0wgu" path="res://icon.svg" id="2_yewv4"]
+[ext_resource type="Texture2D" uid="uid://c8ufx3qcfuo55" path="res://assets/sprites/player_1/movements/luca_salto 2-export.png" id="4_2l4js"]
+[ext_resource type="Texture2D" uid="uid://br6rt06ilp4ko" path="res://assets/sprites/player_1/movements/luca_salto 2.png" id="5_jk2m4"]
+[ext_resource type="Texture2D" uid="uid://qf6y6dw5hb3k" path="res://assets/sprites/player_1/movements/Luca Izq 01.png" id="5_xhtjm"]
+[ext_resource type="Texture2D" uid="uid://b4gatchd0nrpi" path="res://assets/sprites/player_1/movements/Luca Izq 02.png" id="6_k4v7y"]
+[ext_resource type="Texture2D" uid="uid://4ecx5be6o4ki" path="res://assets/sprites/player_1/movements/luca_salto-export.png" id="6_xhtjm"]
+[ext_resource type="Texture2D" uid="uid://tsp5aeb4fp6i" path="res://assets/sprites/player_1/movements/luca_salto.png" id="7_k4v7y"]
+[ext_resource type="Texture2D" uid="uid://c7reqhnw2l3re" path="res://assets/sprites/player_1/movements/Luca Izq 03.png" id="7_xrqxk"]
+[ext_resource type="Texture2D" uid="uid://c6x03qfhrcg6m" path="res://assets/sprites/player_1/movements/Luca D 01.png" id="8_g66nw"]
+[ext_resource type="Texture2D" uid="uid://dqlfuwrr7vrbx" path="res://assets/sprites/player_1/movements/Luca D 02.png" id="9_rpnd8"]
+[ext_resource type="Texture2D" uid="uid://by6ypq0vgy8id" path="res://assets/sprites/player_1/movements/Luca D 03.png" id="10_d6tgn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wg1y"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"crouch_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"crouch_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xhtjm")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_g66nw")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2l4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jk2m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xhtjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k4v7y")
+}],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2l4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jk2m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xhtjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k4v7y")
+}],
+"loop": true,
+"name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.7,
+"texture": ExtResource("5_xhtjm")
+}, {
+"duration": 1.7,
+"texture": ExtResource("6_k4v7y")
+}, {
+"duration": 1.7,
+"texture": ExtResource("7_xrqxk")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.7,
+"texture": ExtResource("8_g66nw")
+}, {
+"duration": 1.7,
+"texture": ExtResource("9_rpnd8")
+}, {
+"duration": 1.7,
+"texture": ExtResource("10_d6tgn")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 8.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yewv4"]
-size = Vector2(20, 28)
+size = Vector2(12, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l4js"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 
 [node name="Player" type="CharacterBody2D" unique_id=515009566]
 script = ExtResource("1_rp718")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1827885106]
-texture = ExtResource("2_yewv4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2046136677]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_3wg1y")
+animation = &"jump_left"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1609958889]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_yewv4")
 
+[node name="CrouchCollision" type="CollisionShape2D" parent="." unique_id=167130906]
+visible = false
+shape = SubResource("RectangleShape2D_2l4js")
+
 [node name="GunPoint" type="Marker2D" parent="." unique_id=746266631]
+position = Vector2(10, 2)
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=1431167414]
+[node name="PickupArea" type="Area2D" parent="." unique_id=917446123]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1903000663]
-shape = SubResource("RectangleShape2D_dyp2m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1424677225]
+position = Vector2(0, 2)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_jk2m4")

@@ -15,6 +15,7 @@ const C_ORANGE      := Color("#FF6B35")
 
 # ─── Nodos UI ────────────────────────────────────────────────
 @onready var btn_play     = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay
+@onready var btn_play_2   = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay2
 @onready var btn_settings = $Screen/MarginContainer/VBoxContainer/Buttons/BtnSettings
 @onready var btn_credits  = $Screen/MarginContainer/VBoxContainer/Buttons/BtnCredits
 @onready var press_start  = $Screen/MarginContainer/VBoxContainer/PressStart
@@ -33,6 +34,7 @@ func _ready():
 	press_start.custom_minimum_size = Vector2(0, 20)
 	
 	btn_play.pressed.connect(_on_play_pressed)
+	btn_play_2.pressed.connect(_on_test_pressed)
 	btn_settings.pressed.connect(_on_settings_pressed)
 	btn_credits.pressed.connect(_on_credits_pressed)
 	
@@ -122,6 +124,9 @@ func _blink_press_start():
 # ─── Navegación ──────────────────────────────────────────────
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/LobbyMenu.tscn")
+
+func _on_test_pressed():
+	get_tree().change_scene_to_file("res://scenes/game/TestLevel.tscn")
 
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/SettingsMenu.tscn")

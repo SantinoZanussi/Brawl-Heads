@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://cl3fgnvi0pmtb"]
+
+[ext_resource type="Script" uid="uid://do21gs2bkjbmr" path="res://scripts/ui/play_menu.gd" id="1_n6g8v"]
+[ext_resource type="Shader" uid="uid://d24piv6k4nqcj" path="res://scenes/shaders/title_shader.gdshader" id="2_s08y3"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_2uksp"]
+[ext_resource type="Script" uid="uid://cx0k8n0mpmv6r" path="res://scripts/ui/particle_layer.gd" id="4_l6dr7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g0nr"]
+bg_color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84313726, 0, 1)
+corner_detail = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iitkr"]
+shader = ExtResource("2_s08y3")
+shader_parameter/glow_color = Color(1, 0.84313726, 0, 0.7058824)
+shader_parameter/glow_size = 3.0000001425
+shader_parameter/glow_strength = 2.50000011875
+shader_parameter/threshold = 0.1370000065075
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6g8v"]
+bg_color = Color(0.08627451, 0.12941177, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18039216, 0.18039216, 0.22745098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s08y3"]
+bg_color = Color(0.12156863, 0.1764706, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9607843, 1, 1)
+
+[node name="Node2D" type="Node2D" unique_id=2026990139]
+
+[node name="PlayMenu" type="Control" parent="." unique_id=317640068]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n6g8v")
+
+[node name="BG" type="ColorRect" parent="PlayMenu" unique_id=566771458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="Screen" type="PanelContainer" parent="PlayMenu" unique_id=1873250316]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5g0nr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu/Screen" unique_id=1814146980]
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer" unique_id=1697960577]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxTitle" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer" unique_id=999706150]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TitleArea" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/VBoxTitle" unique_id=346272907]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/VBoxTitle/TitleArea" unique_id=1796032668]
+texture_filter = 1
+material = SubResource("ShaderMaterial_iitkr")
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93333334, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("3_2uksp")
+theme_override_font_sizes/font_size = 64
+text = "JUGAR"
+horizontal_alignment = 1
+
+[node name="TitleUnderLine" type="ColorRect" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/VBoxTitle/TitleArea" unique_id=1651466001]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Subtitle" type="Label" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/VBoxTitle/TitleArea" unique_id=1874070146]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54509807, 0.56078434, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("3_2uksp")
+theme_override_font_sizes/font_size = 12
+text = "CREAR O BUSCAR SALA"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/VBoxTitle" unique_id=1530076595]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ViewMain" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer" unique_id=2026326524]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BtnCreate" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewMain" unique_id=1568366415]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2uksp")
+theme_override_font_sizes/font_size = 14
+text = "CREAR"
+
+[node name="BtnBrowse" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewMain" unique_id=2070215372]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9411765, 0.91764706, 0.8392157, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("3_2uksp")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_n6g8v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s08y3")
+text = "🔍  BUSCAR"
+
+[node name="BtnBack" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewMain" unique_id=77072472]
+layout_mode = 2
+text = "VOLVER"
+
+[node name="ViewCreate" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer" unique_id=1143712122]
+layout_mode = 2
+
+[node name="RoomName" type="LineEdit" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewCreate" unique_id=673405504]
+layout_mode = 2
+
+[node name="Password" type="LineEdit" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewCreate" unique_id=1692561486]
+layout_mode = 2
+
+[node name="MaxPlayers" type="OptionButton" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewCreate" unique_id=1018079146]
+layout_mode = 2
+
+[node name="BtnHost" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewCreate" unique_id=1128056795]
+layout_mode = 2
+text = "CREAR SALA"
+
+[node name="BtnBack" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewCreate" unique_id=373594563]
+layout_mode = 2
+text = "VOLVER"
+
+[node name="ViewBrowse" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer" unique_id=542362017]
+layout_mode = 2
+
+[node name="RoomList" type="VBoxContainer" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=1720862385]
+layout_mode = 2
+
+[node name="LblNoRooms" type="Label" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=995265025]
+layout_mode = 2
+text = "No se encontrarón salas"
+
+[node name="JoinPassword" type="LineEdit" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=1753250025]
+visible = false
+layout_mode = 2
+
+[node name="BtnJoin" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=1469171378]
+layout_mode = 2
+disabled = true
+
+[node name="BtnRefresh" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=648621565]
+layout_mode = 2
+
+[node name="BtnBack" type="Button" parent="PlayMenu/Screen/MarginContainer/VBoxContainer/ViewBrowse" unique_id=382959740]
+layout_mode = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="PlayMenu/Screen/MarginContainer" unique_id=1261863362]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Copyright-Version" type="Label" parent="PlayMenu/Screen/MarginContainer/BottomBar" unique_id=629040988]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43411303, 0.43428433, 0.51786786, 1)
+theme_override_fonts/font = ExtResource("3_2uksp")
+theme_override_font_sizes/font_size = 9
+text = "© BRAWL HEADS 2026 - GODOT 4 - v1.0"
+
+[node name="ParticleLayer" type="Node2D" parent="PlayMenu" unique_id=1036617809]
+position = Vector2(-650, -150)
+script = ExtResource("4_l6dr7")
+
+[node name="PixelParticles" type="CPUParticles2D" parent="PlayMenu" unique_id=435401161]
+position = Vector2(240, 340)
+amount = 30
+lifetime = 12.0
+direction = Vector2(1, -1)
+gravity = Vector2(0, -30)
+initial_velocity_min = 15.0
+initial_velocity_max = 40.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1967392114]
+position = Vector2(20, 20)

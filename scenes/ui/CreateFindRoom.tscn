@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bu8whemhi6l8q"]
+
+[ext_resource type="Script" uid="uid://bivuiuwljrnm5" path="res://scripts/ui/CreateFindRoom.gd" id="1_7rym3"]
+
+[node name="CreateFindRoom" type="Node2D" unique_id=1900866995]
+
+[node name="Lobby" type="Control" parent="." unique_id=1121310239]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7rym3")
+
+[node name="Screen" type="HBoxContainer" parent="Lobby" unique_id=1030337180]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Left" type="VBoxContainer" parent="Lobby/Screen" unique_id=1763863499]
+layout_mode = 2
+
+[node name="LblRoomName" type="Label" parent="Lobby/Screen/Left" unique_id=1312352774]
+layout_mode = 2
+
+[node name="PlayerList" type="VBoxContainer" parent="Lobby/Screen/Left" unique_id=213946163]
+layout_mode = 2
+
+[node name="BtnReady" type="Button" parent="Lobby/Screen/Left" unique_id=528901269]
+layout_mode = 2
+
+[node name="BtnStart" type="Button" parent="Lobby/Screen/Left" unique_id=425234742]
+layout_mode = 2
+
+[node name="BtnLeave" type="Button" parent="Lobby/Screen/Left" unique_id=1376283217]
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="Lobby/Screen" unique_id=513856583]
+layout_mode = 2
+
+[node name="ChatLog" type="RichTextLabel" parent="Lobby/Screen/Right" unique_id=911567260]
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="ChatInput" type="LineEdit" parent="Lobby/Screen/Right" unique_id=1424981663]
+layout_mode = 2
+
+[node name="BtnSend" type="Button" parent="Lobby/Screen/Right" unique_id=70160673]
+layout_mode = 2

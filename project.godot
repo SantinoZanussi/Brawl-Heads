@@ -14,7 +14,7 @@ config/name="Brawl Heads"
 config/version="1.0"
 run/main_scene="uid://ctxx2m6pu28e3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://b8ki2oa2xqekp"
 
 [audio]
 

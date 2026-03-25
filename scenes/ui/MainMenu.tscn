@@ -212,6 +212,33 @@ text = "▶  JUGAR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BtnPlay2" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=419170181]
+custom_minimum_size = Vector2(380, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0.9607843, 1, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwbf0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ysvc")
+text = "
+"
+script = ExtResource("4_bhu4a")
+
+[node name="Label" type="Label" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay2" unique_id=1737757111]
+material = SubResource("ShaderMaterial_bhu4a")
+custom_minimum_size = Vector2(380, 40)
+layout_mode = 0
+offset_right = 378.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.8509804, 0, 1)
+theme_override_fonts/font = ExtResource("1_vjtqc")
+theme_override_font_sizes/font_size = 16
+text = "▶  JUGAR TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BtnSettings" type="Button" parent="MainMenu/Screen/MarginContainer/VBoxContainer/Buttons" unique_id=698558574]
 custom_minimum_size = Vector2(380, 48)
 layout_mode = 2

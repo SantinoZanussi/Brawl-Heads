@@ -17,13 +17,15 @@ var facing: int = 1             # 1 = derecha, -1 = izquierda
 var held_weapon = null
 
 # ─── Referencias a nodos ─────────────────────────────────────
-@onready var sprite          = $Sprite2D
+@onready var sprite          = $AnimatedSprite2D
 @onready var stand_collision = $PlayerCollision
 @onready var crouch_collision= $CrouchCollision
 @onready var gun_point       = $GunPoint
+@onready var pickup_area = $PickupArea
 
 # ─────────────────────────────────────────────────────────────
 func _ready():
+	sprite.play("idle_left")
 	#crouch_collision.disabled = true
 	pass
 
@@ -36,6 +38,8 @@ func _physics_process(delta: float):
 	_handle_jump()
 	_handle_crouch()
 	_update_facing()
+	_handle_pickup()
+	_handle_shoot()
 	
 	move_and_slide()
 
@@ -92,7 +96,30 @@ func _update_facing():
 	var dir := _get_axis("left", "right")
 	if dir != 0:
 		facing = int(dir)
-		sprite.flip_h = facing == -1
+	_update_animation(dir)
+
+func _update_animation(dir: float):
+	var new_anim := ""
+
+	if is_crouching:
+		new_anim = "crouch_right" if facing == 1 else "crouch_left"
+
+	elif not is_on_floor():
+		new_anim = "jump_right" if facing == 1 else "jump_left"
+
+	elif dir != 0:
+		new_anim = "walk_right" if facing == 1 else "walk_left"
+
+	else:
+		# Usa la dirección que ya tiene "facing" guardada
+		new_anim = "idle_right" if facing == 1 else "idle_left"
+
+	if sprite.animation != new_anim:
+		if new_anim in ["idle_right", "idle_left"]:
+			sprite.animation = new_anim
+			sprite.stop()        # Congela en frame 0
+		else:
+			sprite.play(new_anim)
 
 # ─── Muerte / Ragdoll ────────────────────────────────────────
 func die(impulse: Vector2):
@@ -135,3 +162,40 @@ func _just_pressed(action: String) -> bool:
 
 func _is_pressed(action: String) -> bool:
 	return Input.is_action_pressed("p%d_%s" % [player_index + 1, action])
+
+func _handle_pickup():
+	if not _just_pressed("pickup"):
+		return
+	
+	if held_weapon != null:
+		drop_weapon()
+		return
+	
+	# Busca el arma más cercana en el área
+	for body in pickup_area.get_overlapping_bodies():
+		if body.has_method("on_picked_up") and not body.is_held:
+			pick_up_weapon(body)
+			break
+
+func pick_up_weapon(weapon):
+	if held_weapon != null:
+		drop_weapon()
+	
+	held_weapon = weapon
+	weapon.on_picked_up(self)  # ← pasás "self" como referencia
+	
+	weapon.reparent(gun_point)
+	weapon.position = Vector2.ZERO
+	weapon.rotation = 0
+
+func drop_weapon():
+	if held_weapon == null:
+		return
+	
+	held_weapon.reparent(get_parent())  # Vuelve al mundo
+	held_weapon.on_dropped(Vector2(facing * 150, -100))
+	held_weapon = null
+
+func _handle_shoot():
+	if _is_pressed("shoot") and held_weapon != null:
+		held_weapon.shoot()

@@ -342,7 +342,7 @@ theme_override_fonts/font = ExtResource("3_6y3mh")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_2itnm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_shycq")
-text = "⬅ VOLVER"
+text = "<- VOLVER"
 
 [node name="BottomBar" type="HBoxContainer" parent="SettingsMenu/Screen/MarginContainer" unique_id=1206072652]
 layout_mode = 2

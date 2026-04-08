@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dqng8a1il8abx"]
+
+[ext_resource type="Script" uid="uid://ci001oca2f87l" path="res://scripts/weapons/blunderbuss.gd" id="1_lq6ae"]
+[ext_resource type="Texture2D" uid="uid://nmvy2yfymm2i" path="res://resources/weapons/blunderbuss.png" id="2_up32b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
+size = Vector2(49, 16)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1825481348]
+script = ExtResource("1_lq6ae")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1902000306]
+position = Vector2(7.272728, 2.2727275)
+scale = Vector2(1.4545455, 1.4545455)
+texture = ExtResource("2_up32b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=310395401]
+position = Vector2(7.5, 3)
+shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=605777511]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1172430771]
+position = Vector2(7.5, 3)
+shape = SubResource("RectangleShape2D_t4pfi")

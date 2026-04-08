@@ -2,8 +2,8 @@ extends "res://scripts/weapons/weapon_base.gd"
 
 const BULLET_SCENE = preload("res://scenes/weapons/bullet.tscn")
 
-const FIRE_RATE := 0.125
-const RECOIL    := 180.0
+const FIRE_RATE := 0.35
+const RECOIL    := 120.0
 
 var can_shoot: bool = true
 

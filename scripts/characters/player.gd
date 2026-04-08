@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 # ─── Constantes de movimiento ───────────────────────────────
-const SPEED          := 320.0
+const SPEED          := 420.0
 const ACCELERATION   := 3000.0
-const FRICTION       := 2500.0
-const JUMP_FORCE     := -560.0
+const FRICTION       := 3500.0
+const JUMP_FORCE     := -600.0
 const GRAVITY        := 1800.0
-const FALL_GRAVITY   := 2800.0  # más pesado al caer = feel de Duck Game
+const FALL_GRAVITY   := 5800.0  # más pesado al caer = feel de Duck Game
 const MAX_FALL_SPEED := 900.0
 
 # ─── Variables de estado ─────────────────────────────────────
@@ -34,7 +34,7 @@ func _physics_process(delta: float):
 		return
 	
 	_apply_gravity(delta)
-	_handle_movement(delta)
+	_handle_movement(delta)	
 	_handle_jump()
 	_handle_crouch()
 	_update_facing()
@@ -46,7 +46,6 @@ func _physics_process(delta: float):
 # ─── Gravedad ────────────────────────────────────────────────
 func _apply_gravity(delta: float):
 	if not is_on_floor():
-		# Caída más pesada que la subida
 		var grav = FALL_GRAVITY if velocity.y > 0 else GRAVITY
 		velocity.y += grav * delta
 		velocity.y = min(velocity.y, MAX_FALL_SPEED)
@@ -72,23 +71,14 @@ func _handle_crouch():
 	if want_crouch and not is_crouching and is_on_floor():
 		is_crouching = true
 		var shape = stand_collision.shape as RectangleShape2D
-		shape.size = Vector2(20, 16)
-		stand_collision.position.y = 6
+		shape.size = Vector2(20, 20)
+		stand_collision.position.y = 4
 	elif not want_crouch and is_crouching:
 		is_crouching = false
 		var shape = stand_collision.shape as RectangleShape2D
-		shape.size = Vector2(20, 28)
-		stand_collision.position.y = 0
-	#var want_crouch := _is_pressed("duck")
-	#
-	#if want_crouch and not is_crouching and is_on_floor():
-		#is_crouching = true
-		#stand_collision.disabled = true
-		#crouch_collision.disabled = false
-	#elif not want_crouch and is_crouching:
-		#is_crouching = false
-		#stand_collision.disabled = false
-		#crouch_collision.disabled = true
+		#shape.size = Vector2(20, 24)
+		shape.size = Vector2(12, 25)
+		stand_collision.position.y = 2
 	
 
 # ─── Dirección que mira ──────────────────────────────────────
@@ -96,31 +86,44 @@ func _update_facing():
 	var dir := _get_axis("left", "right")
 	if dir != 0:
 		facing = int(dir)
+	
+	var current = sprite.animation
+
+	if facing == 1:  # mirando derecha
+		if "crouch" in current:
+			gun_point.position = Vector2(4.5, 8)
+		else:
+			gun_point.position = Vector2(4.5, 5)
+	else:            # mirando izquierda
+		if "crouch" in current:
+			gun_point.position = Vector2(5, 8)
+		else:
+			gun_point.position = Vector2(-1, 6)
+
 	_update_animation(dir)
 
 func _update_animation(dir: float):
 	var new_anim := ""
+	var gun := "_gun" if held_weapon != null else ""
 
 	if is_crouching:
-		new_anim = "crouch_right" if facing == 1 else "crouch_left"
+		new_anim = "crouch_right" + gun if facing == 1 else "crouch_left" + gun
 
 	elif not is_on_floor():
-		new_anim = "jump_right" if facing == 1 else "jump_left"
+		new_anim = "jump_right" + gun if facing == 1 else "jump_left" + gun
 
 	elif dir != 0:
-		new_anim = "walk_right" if facing == 1 else "walk_left"
+		new_anim = "walk_right" + gun if facing == 1 else "walk_left" + gun
 
 	else:
-		# Usa la dirección que ya tiene "facing" guardada
-		new_anim = "idle_right" if facing == 1 else "idle_left"
+		new_anim = "idle_right" + gun if facing == 1 else "idle_left" + gun
 
 	if sprite.animation != new_anim:
-		if new_anim in ["idle_right", "idle_left"]:
+		if new_anim in ["idle_right", "idle_left", "idle_right_gun", "idle_left_gun"]:
 			sprite.animation = new_anim
-			sprite.stop()        # Congela en frame 0
+			sprite.stop()
 		else:
 			sprite.play(new_anim)
-
 # ─── Muerte / Ragdoll ────────────────────────────────────────
 func die(impulse: Vector2):
 	if is_dead:
@@ -192,8 +195,19 @@ func drop_weapon():
 	if held_weapon == null:
 		return
 	
+	var current_facing = facing
+	
+	held_weapon.reparent(get_parent())
+	# Spawneala fuera del collision del jugador
+	held_weapon.global_position = global_position + Vector2(current_facing * 20, -5)
+	
+	
 	held_weapon.reparent(get_parent())  # Vuelve al mundo
-	held_weapon.on_dropped(Vector2(facing * 150, -100))
+	var impulse = Vector2(
+		current_facing * 200 + velocity.x * 0.5,
+		-150 + velocity.y * 0.3
+	)
+	held_weapon.on_dropped(impulse)
 	held_weapon = null
 
 func _handle_shoot():

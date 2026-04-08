@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://dio73oaj27n57" path="res://scripts/maps/test_level.gd" id="1_w7wyt"]
 [ext_resource type="Texture2D" uid="uid://cxjjkv6xioh1d" path="res://resources/maps/office.png" id="2_30tfc"]
 [ext_resource type="PackedScene" uid="uid://dp3n165obmycd" path="res://scenes/weapons/ak47.tscn" id="4_0njqy"]
+[ext_resource type="PackedScene" uid="uid://74k4vqkgl3gk" path="res://scenes/weapons/pistol.tscn" id="5_l2s7h"]
+[ext_resource type="PackedScene" uid="uid://dqng8a1il8abx" path="res://scenes/weapons/blunderbuss.tscn" id="6_3f7kv"]
+[ext_resource type="PackedScene" uid="uid://bqsi6wx0x0kp1" path="res://scenes/weapons/minigun.tscn" id="7_c0jcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0jcr"]
+size = Vector2(105, 571)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7s4"]
 size = Vector2(1478, 97)
@@ -16,11 +22,23 @@ position = Vector2(-5.5, 7.6293945e-06)
 scale = Vector2(3.959375, 2.95)
 texture = ExtResource("2_30tfc")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1954937259]
+[node name="Pared Limite Izq" type="StaticBody2D" parent="." unique_id=215255025]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared Limite Izq" unique_id=145227476]
+position = Vector2(-691.5, -75.5)
+shape = SubResource("RectangleShape2D_c0jcr")
+
+[node name="Pared Limite Der" type="StaticBody2D" parent="." unique_id=1001523674]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared Limite Der" unique_id=1355230865]
+position = Vector2(682.5, -76.5)
+shape = SubResource("RectangleShape2D_c0jcr")
+
+[node name="Piso Limite" type="StaticBody2D" parent="." unique_id=1954937259]
 position = Vector2(4.7683716e-07, 0)
 scale = Vector2(1.0000001, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=233253965]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso Limite" unique_id=233253965]
 position = Vector2(-5, 259)
 shape = SubResource("RectangleShape2D_5a7s4")
 debug_color = Color(0.67402476, 0.33257622, 0.6400758, 0.41960785)
@@ -34,3 +52,14 @@ scale = Vector2(1.0000001, 1)
 
 [node name="Ak47" parent="." unique_id=2071008301 instance=ExtResource("4_0njqy")]
 position = Vector2(145, 181)
+
+[node name="pistol" parent="." unique_id=1825481348 instance=ExtResource("5_l2s7h")]
+position = Vector2(-219, 145)
+
+[node name="rifle" parent="." unique_id=211582661 instance=ExtResource("6_3f7kv")]
+position = Vector2(-67.00001, 138)
+scale = Vector2(3.959375, 2.95)
+
+[node name="minigun" parent="." unique_id=27860779 instance=ExtResource("7_c0jcr")]
+position = Vector2(264.00003, 107)
+scale = Vector2(3.959375, 2.95)

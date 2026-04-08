@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://74k4vqkgl3gk"]
+
+[ext_resource type="Script" uid="uid://bpp6dlm8yq15g" path="res://scripts/weapons/pistol.gd" id="1_r3071"]
+[ext_resource type="Texture2D" uid="uid://bt1c7hgukncq3" path="res://resources/weapons/cowboyPistol.png" id="2_60a84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
+size = Vector2(34, 11)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1825481348]
+script = ExtResource("1_r3071")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1902000306]
+texture = ExtResource("2_60a84")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=310395401]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=605777511]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=183459358]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_t4pfi")

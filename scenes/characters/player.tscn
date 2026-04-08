@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cecwi0bgjtw0n"]
 
 [ext_resource type="Script" uid="uid://cu80qmguh8cuy" path="res://scripts/characters/player.gd" id="1_rp718"]
+[ext_resource type="Texture2D" uid="uid://daobo1gejta3h" path="res://assets/sprites/player_1/movements/Luca Agachado.png" id="2_3wg1y"]
+[ext_resource type="Texture2D" uid="uid://cbbhjipvk60dr" path="res://assets/sprites/player_1/movements/Luca Agachado ARM.png" id="3_kmyvj"]
 [ext_resource type="Texture2D" uid="uid://c8ufx3qcfuo55" path="res://assets/sprites/player_1/movements/luca_salto 2-export.png" id="4_2l4js"]
 [ext_resource type="Texture2D" uid="uid://br6rt06ilp4ko" path="res://assets/sprites/player_1/movements/luca_salto 2.png" id="5_jk2m4"]
+[ext_resource type="Texture2D" uid="uid://cbtiniutxdbkc" path="res://assets/sprites/player_1/movements/Luca Apuntando DER.png" id="5_k4v7y"]
 [ext_resource type="Texture2D" uid="uid://qf6y6dw5hb3k" path="res://assets/sprites/player_1/movements/Luca Izq 01.png" id="5_xhtjm"]
 [ext_resource type="Texture2D" uid="uid://b4gatchd0nrpi" path="res://assets/sprites/player_1/movements/Luca Izq 02.png" id="6_k4v7y"]
 [ext_resource type="Texture2D" uid="uid://4ecx5be6o4ki" path="res://assets/sprites/player_1/movements/luca_salto-export.png" id="6_xhtjm"]
@@ -11,17 +14,44 @@
 [ext_resource type="Texture2D" uid="uid://c6x03qfhrcg6m" path="res://assets/sprites/player_1/movements/Luca D 01.png" id="8_g66nw"]
 [ext_resource type="Texture2D" uid="uid://dqlfuwrr7vrbx" path="res://assets/sprites/player_1/movements/Luca D 02.png" id="9_rpnd8"]
 [ext_resource type="Texture2D" uid="uid://by6ypq0vgy8id" path="res://assets/sprites/player_1/movements/Luca D 03.png" id="10_d6tgn"]
+[ext_resource type="Texture2D" uid="uid://bygatj4gievt8" path="res://assets/sprites/player_1/movements/Luca Apuntando IZQ 2.png" id="12_d6tgn"]
+[ext_resource type="Texture2D" uid="uid://dbh8sehf7gr0v" path="res://assets/sprites/player_1/movements/Luca Apuntando IZQ.png" id="13_3wg1y"]
+[ext_resource type="Texture2D" uid="uid://cta5o15qiqkk5" path="res://assets/sprites/player_1/movements/Luca Apuntando IZQ 3.png" id="14_kmyvj"]
+[ext_resource type="Texture2D" uid="uid://dh4clle1c743m" path="res://assets/sprites/player_1/movements/Luca Apuntando DER 2.png" id="17_a2luo"]
+[ext_resource type="Texture2D" uid="uid://byj7k50sl3k4g" path="res://assets/sprites/player_1/movements/Luca Apuntando DER 3.png" id="18_eir2k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3wg1y"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3wg1y")
+}],
 "loop": true,
 "name": &"crouch_left",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kmyvj")
+}],
+"loop": true,
+"name": &"crouch_left_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3wg1y")
+}],
 "loop": true,
 "name": &"crouch_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kmyvj")
+}],
+"loop": true,
+"name": &"crouch_right_gun",
 "speed": 5.0
 }, {
 "frames": [{
@@ -34,11 +64,27 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("13_3wg1y")
+}],
+"loop": true,
+"name": &"idle_left_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("8_g66nw")
 }],
 "loop": true,
 "name": &"idle_right",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k4v7y")
+}],
+"loop": true,
+"name": &"idle_right_gun",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,7 +117,41 @@ animations = [{
 "texture": ExtResource("7_k4v7y")
 }],
 "loop": true,
+"name": &"jump_left_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2l4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jk2m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xhtjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k4v7y")
+}],
+"loop": true,
 "name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2l4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jk2m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xhtjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k4v7y")
+}],
+"loop": true,
+"name": &"jump_right_gun",
 "speed": 5.0
 }, {
 "frames": [{
@@ -90,6 +170,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.7,
+"texture": ExtResource("12_d6tgn")
+}, {
+"duration": 1.7,
+"texture": ExtResource("13_3wg1y")
+}, {
+"duration": 1.7,
+"texture": ExtResource("14_kmyvj")
+}],
+"loop": true,
+"name": &"walk_left_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.7,
 "texture": ExtResource("8_g66nw")
 }, {
 "duration": 1.7,
@@ -101,12 +195,27 @@ animations = [{
 "loop": true,
 "name": &"walk_right",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.7,
+"texture": ExtResource("17_a2luo")
+}, {
+"duration": 1.7,
+"texture": ExtResource("5_k4v7y")
+}, {
+"duration": 1.7,
+"texture": ExtResource("18_eir2k")
+}],
+"loop": true,
+"name": &"walk_right_gun",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yewv4"]
 size = Vector2(12, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l4js"]
+size = Vector2(13, 25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 
@@ -114,6 +223,7 @@ size = Vector2(12, 25)
 script = ExtResource("1_rp718")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2046136677]
+position = Vector2(0, 1.9999998)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_3wg1y")
 animation = &"jump_left"
@@ -124,14 +234,15 @@ shape = SubResource("RectangleShape2D_yewv4")
 
 [node name="CrouchCollision" type="CollisionShape2D" parent="." unique_id=167130906]
 visible = false
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_2l4js")
 
 [node name="GunPoint" type="Marker2D" parent="." unique_id=746266631]
-position = Vector2(10, 2)
+position = Vector2(7, 2)
 
 [node name="PickupArea" type="Area2D" parent="." unique_id=917446123]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1424677225]
 position = Vector2(0, 2)
-scale = Vector2(1.2, 1.2)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_jk2m4")

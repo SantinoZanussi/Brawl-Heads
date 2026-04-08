@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bqsi6wx0x0kp1"]
+
+[ext_resource type="Script" uid="uid://brfydjsgv1ujf" path="res://scripts/weapons/minigun.gd" id="1_lhdf3"]
+[ext_resource type="Texture2D" uid="uid://dii4lflku5qec" path="res://resources/weapons/chaingun.png" id="2_oir7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
+size = Vector2(54, 25)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1825481348]
+script = ExtResource("1_lhdf3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1902000306]
+position = Vector2(1.0000002, -2.0000007)
+scale = Vector2(1.5357143, 1.5357143)
+texture = ExtResource("2_oir7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=310395401]
+shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=605777511]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=365798945]
+shape = SubResource("RectangleShape2D_t4pfi")

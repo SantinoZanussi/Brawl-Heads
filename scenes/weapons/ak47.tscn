@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cie723lq51v46" path="res://scripts/weapons/ak_47.gd" id="1_t4pfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
-size = Vector2(32, 10)
+size = Vector2(22, 11)
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=1825481348]
 script = ExtResource("1_t4pfi")

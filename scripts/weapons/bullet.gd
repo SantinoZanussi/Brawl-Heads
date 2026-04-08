@@ -9,10 +9,9 @@ func _physics_process(delta: float):
 	position += direction * speed * delta
 
 func _on_body_entered(body):
+	if body.get("player_index") == owner_player_index:
+		return
 	if body.has_method("take_damage"):
-		# Evita dañar al jugador que disparó
-		if body.get("player_index") == owner_player_index:
-			return
 		body.take_damage(damage, direction * 300)
 	queue_free()
 

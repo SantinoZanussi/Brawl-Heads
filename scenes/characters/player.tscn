@@ -220,6 +220,7 @@ size = Vector2(13, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 
 [node name="Player" type="CharacterBody2D" unique_id=515009566]
+z_index = 1
 script = ExtResource("1_rp718")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2046136677]

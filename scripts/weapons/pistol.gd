@@ -7,12 +7,18 @@ const RECOIL    := 120.0
 
 var can_shoot: bool = true
 
+func _ready():
+	super._ready()
+	max_ammo = 15
+	current_ammo = 15
+	reload_time = 1.0
+
 func shoot():
-	if not can_shoot:
+	if not can_shoot or not try_shoot():
 		return
 
 	can_shoot = false
-
+	
 	var bullet = BULLET_SCENE.instantiate()
 	get_tree().root.add_child(bullet)
 	bullet.global_position    = owner_player.gun_point.global_position

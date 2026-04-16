@@ -126,7 +126,7 @@ func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/LobbyMenu.tscn")
 
 func _on_test_pressed():
-	get_tree().change_scene_to_file("res://scenes/game/TestLevel.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/virtual.tscn")
 
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/SettingsMenu.tscn")

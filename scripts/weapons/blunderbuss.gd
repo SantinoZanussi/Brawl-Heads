@@ -7,8 +7,14 @@ const RECOIL    := 800.0
 
 var can_shoot: bool = true
 
+func _ready():
+	super._ready()
+	max_ammo = 5
+	current_ammo = 5
+	reload_time = 3.5
+
 func shoot():
-	if not can_shoot:
+	if not can_shoot or not try_shoot():
 		return
 
 	can_shoot = false

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brfydjsgv1ujf" path="res://scripts/weapons/minigun.gd" id="1_lhdf3"]
 [ext_resource type="Texture2D" uid="uid://dii4lflku5qec" path="res://resources/weapons/chaingun.png" id="2_oir7h"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_oir7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
 size = Vector2(54, 25)
@@ -22,3 +23,13 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=365798945]
 shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="ReloadBar" type="ProgressBar" parent="." unique_id=1830981448]
+texture_filter = 1
+offset_left = -12.0
+offset_top = -30.0
+offset_right = 11.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0.30980393, 0.9098039, 0.7254902, 1)
+theme_override_fonts/font = ExtResource("3_oir7h")
+theme_override_font_sizes/font_size = 8

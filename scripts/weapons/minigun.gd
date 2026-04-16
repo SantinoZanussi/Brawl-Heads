@@ -2,13 +2,19 @@ extends "res://scripts/weapons/weapon_base.gd"
 
 const BULLET_SCENE = preload("res://scenes/weapons/bullet.tscn")
 
-const FIRE_RATE := 0.05
-const RECOIL    := 350.0
+const FIRE_RATE := 0.08
+const RECOIL    := 150.0
 
 var can_shoot: bool = true
 
+func _ready():
+	super._ready()
+	max_ammo = 35
+	current_ammo = 35
+	reload_time = 5
+
 func shoot():
-	if not can_shoot:
+	if not can_shoot or not try_shoot():
 		return
 
 	can_shoot = false

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b8h01cma6shv0"]
+
+[ext_resource type="Texture2D" uid="uid://456lfybh6us2" path="res://assets/items-map/billboard.png" id="1_g0ji0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qfja"]
+size = Vector2(22, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s66nf"]
+size = Vector2(34, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apsuu"]
+size = Vector2(361, 8)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=115205132]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=476657215]
+position = Vector2(86.5, 107)
+scale = Vector2(2.1796875, 1.90625)
+texture = ExtResource("1_g0ji0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1017938406]
+position = Vector2(126, 175)
+shape = SubResource("RectangleShape2D_3qfja")
+debug_color = Color(0.9535418, 0, 0.5555278, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1415260083]
+position = Vector2(126, 218.5)
+shape = SubResource("RectangleShape2D_s66nf")
+debug_color = Color(0, 0.6481916, 0.1982035, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1531495685]
+position = Vector2(124.5, 135)
+shape = SubResource("RectangleShape2D_apsuu")
+debug_color = Color(0.87269604, 0.3424674, 0.16681021, 0.41960785)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://buk7ouhmnndel" path="res://resources/weapons/ak47.png" id="1_qiwwx"]
 [ext_resource type="Script" uid="uid://cie723lq51v46" path="res://scripts/weapons/ak_47.gd" id="1_t4pfi"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_efuf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
 size = Vector2(22, 11)
@@ -20,3 +21,13 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=38722342]
 shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="ReloadBar" type="ProgressBar" parent="." unique_id=321330465]
+texture_filter = 1
+offset_left = -12.0
+offset_top = -25.0
+offset_right = 11.0
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(0.30980393, 0.9098039, 0.7254902, 1)
+theme_override_fonts/font = ExtResource("3_efuf3")
+theme_override_font_sizes/font_size = 8

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpp6dlm8yq15g" path="res://scripts/weapons/pistol.gd" id="1_r3071"]
 [ext_resource type="Texture2D" uid="uid://bt1c7hgukncq3" path="res://resources/weapons/cowboyPistol.png" id="2_60a84"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_60a84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4pfi"]
 size = Vector2(34, 11)
@@ -22,3 +23,13 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=183459358]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_t4pfi")
+
+[node name="ReloadBar" type="ProgressBar" parent="." unique_id=538983220]
+texture_filter = 1
+offset_left = -12.0
+offset_top = -24.0
+offset_right = 11.0
+offset_bottom = -6.0
+theme_override_colors/font_color = Color(0.30980393, 0.9098039, 0.7254902, 1)
+theme_override_fonts/font = ExtResource("3_60a84")
+theme_override_font_sizes/font_size = 8

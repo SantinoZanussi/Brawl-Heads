@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://74k4vqkgl3gk" path="res://scenes/weapons/pistol.tscn" id="5_l2s7h"]
 [ext_resource type="PackedScene" uid="uid://dqng8a1il8abx" path="res://scenes/weapons/blunderbuss.tscn" id="6_3f7kv"]
 [ext_resource type="PackedScene" uid="uid://bqsi6wx0x0kp1" path="res://scenes/weapons/minigun.tscn" id="7_c0jcr"]
+[ext_resource type="PackedScene" uid="uid://buipceccg3f8t" path="res://scenes/weapons/basketball.tscn" id="8_0p1ms"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0jcr"]
-size = Vector2(105, 571)
+size = Vector2(105, 676.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7s4"]
 size = Vector2(1478, 97)
@@ -47,9 +48,6 @@ debug_color = Color(0.67402476, 0.33257622, 0.6400758, 0.41960785)
 position = Vector2(-5.5, 7.6293945e-06)
 scale = Vector2(3.959375, 2.95)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=42099615]
-scale = Vector2(1.0000001, 1)
-
 [node name="Ak47" parent="." unique_id=2071008301 instance=ExtResource("4_0njqy")]
 position = Vector2(145, 181)
 
@@ -63,3 +61,8 @@ scale = Vector2(3.959375, 2.95)
 [node name="minigun" parent="." unique_id=27860779 instance=ExtResource("7_c0jcr")]
 position = Vector2(264.00003, 107)
 scale = Vector2(3.959375, 2.95)
+
+[node name="RigidBody2D" parent="." unique_id=533730687 instance=ExtResource("8_0p1ms")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=42099615]
+scale = Vector2(1.0000001, 1)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cny6kt06puh85"]
+
+[ext_resource type="Script" path="res://scripts/weapons/bazooka.gd" id="1_baz"]
+[ext_resource type="Texture2D" uid="uid://cl6vacxivh3b0" path="res://resources/weapons/bazooka.png" id="2_baz"]
+[ext_resource type="FontFile" uid="uid://37mj35jwrje7" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_baz"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_baz"]
+size = Vector2(28, 12)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_baz")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_baz")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_baz")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_baz")
+
+[node name="ReloadBar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -12.0
+offset_top = -25.0
+offset_right = 11.0
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(0.30980393, 0.9098039, 0.7254902, 1)
+theme_override_fonts/font = ExtResource("3_baz")
+theme_override_font_sizes/font_size = 8

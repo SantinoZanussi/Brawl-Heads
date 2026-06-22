@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d04gud2b5udij"]
+
+[ext_resource type="Texture2D" uid="uid://v5ii5xvox1ku" path="res://assets/items-map/arcadeFrame01.png" id="1_scr"]
+
+[node name="ArcadeScreen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_scr")
+scale = Vector2(1.6, 1.6)
+region_enabled = true
+region_rect = Rect2(1, 1, 45, 45)

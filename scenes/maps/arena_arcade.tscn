@@ -1,0 +1,386 @@
+[gd_scene load_steps=38 format=3 uid="uid://b12mqyg78tiqg"]
+
+
+[ext_resource type="Script" path="res://scripts/maps/arena.gd" id="e1"]
+[ext_resource type="Texture2D" uid="uid://eop41wlkuj11" path="res://resources/maps/virtual.png" id="e2"]
+[ext_resource type="Texture2D" uid="uid://jrwdredediqd2" path="res://assets/items-map/generated/floor_arcade.png" id="e3"]
+[ext_resource type="Texture2D" uid="uid://hsgzrblpweo40" path="res://assets/items-map/generated/bld_arc_tower.png" id="e4"]
+[ext_resource type="Texture2D" uid="uid://oce9z9604g4q2" path="res://assets/items-map/generated/bld_arc_block.png" id="e5"]
+[ext_resource type="PackedScene" uid="uid://di1ylgjps6iot" path="res://resources/items-maps/billboard.tscn" id="e6"]
+[ext_resource type="Texture2D" uid="uid://lew7djpdxiie0" path="res://assets/items-map/generated/deco_crt.png" id="e7"]
+[ext_resource type="Texture2D" uid="uid://8j6nzcvlletn2" path="res://assets/items-map/generated/deco_cabinet.png" id="e8"]
+[ext_resource type="Texture2D" uid="uid://tndyo5xikwqg0" path="res://assets/items-map/generated/deco_neon.png" id="e9"]
+[ext_resource type="Texture2D" uid="uid://kt1je577pokx1" path="res://assets/items-map/generated/deco_speaker.png" id="e10"]
+[ext_resource type="Texture2D" uid="uid://csiaji183srpq" path="res://assets/items-map/crate.png" id="e11"]
+[ext_resource type="Texture2D" uid="uid://czuaarvwwh5k0" path="res://assets/items-map/generated/plat_arcade_m.png" id="e12"]
+[ext_resource type="Texture2D" uid="uid://y4f68rhtgc290" path="res://assets/items-map/generated/plat_arcade_s.png" id="e13"]
+[ext_resource type="Texture2D" uid="uid://vor6etnto2du1" path="res://assets/items-map/generated/plat_arcade_l.png" id="e14"]
+[ext_resource type="PackedScene" uid="uid://uc5i64vn6p76" path="res://resources/items-maps/arcade_light.tscn" id="e15"]
+[ext_resource type="Texture2D" uid="uid://ulhv9wzsix652" path="res://assets/items-map/generated/deco_coin.png" id="e16"]
+[ext_resource type="PackedScene" uid="uid://wvst1ef5wf7l" path="res://resources/items-maps/barrel.tscn" id="e17"]
+
+[sub_resource type="RectangleShape2D" id="r1"]
+size = Vector2(60, 1100)
+
+[sub_resource type="RectangleShape2D" id="r2"]
+size = Vector2(1360, 60)
+
+[sub_resource type="RectangleShape2D" id="r3"]
+size = Vector2(1360, 220)
+
+[sub_resource type="RectangleShape2D" id="r4"]
+size = Vector2(122, 276)
+
+[sub_resource type="RectangleShape2D" id="r5"]
+size = Vector2(202, 156)
+
+[sub_resource type="RectangleShape2D" id="r6"]
+size = Vector2(122, 276)
+
+[sub_resource type="RectangleShape2D" id="r7"]
+size = Vector2(202, 156)
+
+[sub_resource type="RectangleShape2D" id="r8"]
+size = Vector2(58, 58)
+
+[sub_resource type="RectangleShape2D" id="r9"]
+size = Vector2(58, 58)
+
+[sub_resource type="RectangleShape2D" id="r10"]
+size = Vector2(58, 58)
+
+[sub_resource type="RectangleShape2D" id="r11"]
+size = Vector2(58, 58)
+
+[sub_resource type="RectangleShape2D" id="r12"]
+size = Vector2(158, 30)
+
+[sub_resource type="RectangleShape2D" id="r13"]
+size = Vector2(94, 30)
+
+[sub_resource type="RectangleShape2D" id="r14"]
+size = Vector2(94, 30)
+
+[sub_resource type="RectangleShape2D" id="r15"]
+size = Vector2(158, 30)
+
+[sub_resource type="RectangleShape2D" id="r16"]
+size = Vector2(158, 30)
+
+[sub_resource type="RectangleShape2D" id="r17"]
+size = Vector2(222, 30)
+
+[sub_resource type="RectangleShape2D" id="r18"]
+size = Vector2(158, 30)
+
+[sub_resource type="RectangleShape2D" id="r19"]
+size = Vector2(158, 30)
+
+[sub_resource type="RectangleShape2D" id="r20"]
+size = Vector2(94, 30)
+
+[node name="ArenaArcade" type="Node2D"]
+script = ExtResource("e1")
+
+[node name="BG" type="Sprite2D" parent="."]
+scale = Vector2(4, 2.57)
+texture = ExtResource("e2")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+[node name="C" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(-648, 0)
+shape = SubResource("r1")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+[node name="C" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(648, 0)
+shape = SubResource("r1")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+[node name="C" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(0, -390)
+shape = SubResource("r2")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+[node name="FloorS" type="Sprite2D" parent="Floor"]
+position = Vector2(0, 291)
+texture = ExtResource("e3")
+[node name="FloorC" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 320)
+shape = SubResource("r3")
+
+[node name="TowerL" type="StaticBody2D" parent="."]
+position = Vector2(-470, 72.0)
+[node name="TowerLS" type="Sprite2D" parent="TowerL"]
+scale = Vector2(1, 1)
+texture = ExtResource("e4")
+[node name="TowerLC" type="CollisionShape2D" parent="TowerL"]
+shape = SubResource("r4")
+
+[node name="BlockL" type="StaticBody2D" parent="."]
+position = Vector2(-175, 132.0)
+[node name="BlockLS" type="Sprite2D" parent="BlockL"]
+scale = Vector2(1, 1)
+texture = ExtResource("e5")
+[node name="BlockLC" type="CollisionShape2D" parent="BlockL"]
+shape = SubResource("r5")
+
+[node name="TowerC" type="StaticBody2D" parent="."]
+position = Vector2(175, 72.0)
+[node name="TowerCS" type="Sprite2D" parent="TowerC"]
+scale = Vector2(1, 1)
+texture = ExtResource("e4")
+[node name="TowerCC" type="CollisionShape2D" parent="TowerC"]
+shape = SubResource("r6")
+
+[node name="BlockR" type="StaticBody2D" parent="."]
+position = Vector2(472, 132.0)
+[node name="BlockRS" type="Sprite2D" parent="BlockR"]
+scale = Vector2(1, 1)
+texture = ExtResource("e5")
+[node name="BlockRC" type="CollisionShape2D" parent="BlockR"]
+shape = SubResource("r7")
+
+[node name="Marquee" parent="." instance=ExtResource("e6")]
+position = Vector2(175, -160)
+
+[node name="Deco_crt_m470_60" type="Sprite2D" parent="."]
+position = Vector2(-470, 60)
+scale = Vector2(4, 4)
+texture = ExtResource("e7")
+
+[node name="Deco_crt_175_60" type="Sprite2D" parent="."]
+position = Vector2(175, 60)
+scale = Vector2(4, 4)
+texture = ExtResource("e7")
+
+[node name="Deco_cabinet_m300_180" type="Sprite2D" parent="."]
+position = Vector2(-300, 180)
+scale = Vector2(4, 4)
+texture = ExtResource("e8")
+
+[node name="Deco_cabinet_300_180" type="Sprite2D" parent="."]
+position = Vector2(300, 180)
+scale = Vector2(4, 4)
+texture = ExtResource("e8")
+
+[node name="Deco_neon_m566_m150" type="Sprite2D" parent="."]
+position = Vector2(-566, -150)
+scale = Vector2(4, 4)
+texture = ExtResource("e9")
+
+[node name="Deco_neon_566_m150" type="Sprite2D" parent="."]
+position = Vector2(566, -150)
+scale = Vector2(-4, 4)
+texture = ExtResource("e9")
+
+[node name="Deco_speaker_m626_182" type="Sprite2D" parent="."]
+position = Vector2(-626, 182)
+scale = Vector2(4, 4)
+texture = ExtResource("e10")
+
+[node name="Deco_speaker_626_182" type="Sprite2D" parent="."]
+position = Vector2(626, 182)
+scale = Vector2(4, 4)
+texture = ExtResource("e10")
+
+[node name="StpL1" type="StaticBody2D" parent="."]
+position = Vector2(-360, 181)
+[node name="StpL1S" type="Sprite2D" parent="StpL1"]
+scale = Vector2(4, 4)
+texture = ExtResource("e11")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+[node name="StpL1C" type="CollisionShape2D" parent="StpL1"]
+shape = SubResource("r8")
+
+[node name="StpL2" type="StaticBody2D" parent="."]
+position = Vector2(-360, 123)
+[node name="StpL2S" type="Sprite2D" parent="StpL2"]
+scale = Vector2(4, 4)
+texture = ExtResource("e11")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+[node name="StpL2C" type="CollisionShape2D" parent="StpL2"]
+shape = SubResource("r9")
+
+[node name="StpR1" type="StaticBody2D" parent="."]
+position = Vector2(360, 181)
+[node name="StpR1S" type="Sprite2D" parent="StpR1"]
+scale = Vector2(4, 4)
+texture = ExtResource("e11")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+[node name="StpR1C" type="CollisionShape2D" parent="StpR1"]
+shape = SubResource("r10")
+
+[node name="StpR2" type="StaticBody2D" parent="."]
+position = Vector2(360, 123)
+[node name="StpR2S" type="Sprite2D" parent="StpR2"]
+scale = Vector2(4, 4)
+texture = ExtResource("e11")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+[node name="StpR2C" type="CollisionShape2D" parent="StpR2"]
+shape = SubResource("r11")
+
+[node name="PMidLo" type="StaticBody2D" parent="."]
+position = Vector2(0, 135)
+[node name="PMidLoS" type="Sprite2D" parent="PMidLo"]
+scale = Vector2(1, 1)
+texture = ExtResource("e12")
+[node name="PMidLoC" type="CollisionShape2D" parent="PMidLo"]
+shape = SubResource("r12")
+
+[node name="PaL" type="StaticBody2D" parent="."]
+position = Vector2(-300, 75)
+[node name="PaLS" type="Sprite2D" parent="PaL"]
+scale = Vector2(1, 1)
+texture = ExtResource("e13")
+[node name="PaLC" type="CollisionShape2D" parent="PaL"]
+shape = SubResource("r13")
+
+[node name="PaR" type="StaticBody2D" parent="."]
+position = Vector2(300, 75)
+[node name="PaRS" type="Sprite2D" parent="PaR"]
+scale = Vector2(1, 1)
+texture = ExtResource("e13")
+[node name="PaRC" type="CollisionShape2D" parent="PaR"]
+shape = SubResource("r14")
+
+[node name="PbL" type="StaticBody2D" parent="."]
+position = Vector2(-150, -3)
+[node name="PbLS" type="Sprite2D" parent="PbL"]
+scale = Vector2(1, 1)
+texture = ExtResource("e12")
+[node name="PbLC" type="CollisionShape2D" parent="PbL"]
+shape = SubResource("r15")
+
+[node name="PbR" type="StaticBody2D" parent="."]
+position = Vector2(150, -3)
+[node name="PbRS" type="Sprite2D" parent="PbR"]
+scale = Vector2(1, 1)
+texture = ExtResource("e12")
+[node name="PbRC" type="CollisionShape2D" parent="PbR"]
+shape = SubResource("r16")
+
+[node name="PbC" type="StaticBody2D" parent="."]
+position = Vector2(0, -75)
+[node name="PbCS" type="Sprite2D" parent="PbC"]
+scale = Vector2(1, 1)
+texture = ExtResource("e14")
+[node name="PbCC" type="CollisionShape2D" parent="PbC"]
+shape = SubResource("r17")
+
+[node name="PcL" type="StaticBody2D" parent="."]
+position = Vector2(-330, -85)
+[node name="PcLS" type="Sprite2D" parent="PcL"]
+scale = Vector2(1, 1)
+texture = ExtResource("e12")
+[node name="PcLC" type="CollisionShape2D" parent="PcL"]
+shape = SubResource("r18")
+
+[node name="PcR" type="StaticBody2D" parent="."]
+position = Vector2(330, -85)
+[node name="PcRS" type="Sprite2D" parent="PcR"]
+scale = Vector2(1, 1)
+texture = ExtResource("e12")
+[node name="PcRC" type="CollisionShape2D" parent="PcR"]
+shape = SubResource("r19")
+
+[node name="Ptop" type="StaticBody2D" parent="."]
+position = Vector2(0, -155)
+[node name="PtopS" type="Sprite2D" parent="Ptop"]
+scale = Vector2(1, 1)
+texture = ExtResource("e13")
+[node name="PtopC" type="CollisionShape2D" parent="Ptop"]
+shape = SubResource("r20")
+
+[node name="Ltm300" parent="." instance=ExtResource("e15")]
+position = Vector2(-300, -352)
+
+[node name="Lt0" parent="." instance=ExtResource("e15")]
+position = Vector2(0, -352)
+
+[node name="Lt300" parent="." instance=ExtResource("e15")]
+position = Vector2(300, -352)
+
+[node name="Deco_coin_m300_20" type="Sprite2D" parent="."]
+position = Vector2(-300, 20)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_300_20" type="Sprite2D" parent="."]
+position = Vector2(300, 20)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_0_80" type="Sprite2D" parent="."]
+position = Vector2(0, 80)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_m150_m58" type="Sprite2D" parent="."]
+position = Vector2(-150, -58)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_150_m58" type="Sprite2D" parent="."]
+position = Vector2(150, -58)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_0_m130" type="Sprite2D" parent="."]
+position = Vector2(0, -130)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="Deco_coin_0_m210" type="Sprite2D" parent="."]
+position = Vector2(0, -210)
+scale = Vector2(3, 3)
+z_index = 1
+texture = ExtResource("e16")
+
+[node name="BarL" parent="." instance=ExtResource("e17")]
+position = Vector2(-60, 190)
+
+[node name="BarR" parent="." instance=ExtResource("e17")]
+position = Vector2(60, 190)
+
+[node name="PlayerSpawns" type="Node2D" parent="."]
+[node name="S1" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(-470, -92)
+[node name="S2" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(175, -92)
+[node name="S3" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(-175, 28)
+[node name="S4" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(472, 28)
+[node name="S5" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(0, 90)
+[node name="S6" type="Marker2D" parent="PlayerSpawns"]
+position = Vector2(0, -120)
+
+[node name="WeaponSpawns" type="Node2D" parent="."]
+[node name="W1" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(0, 90)
+[node name="W2" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(-300, 30)
+[node name="W3" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(300, 30)
+[node name="W4" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(-150, -48)
+[node name="W5" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(150, -48)
+[node name="W6" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(0, -120)
+[node name="W7" type="Marker2D" parent="WeaponSpawns"]
+position = Vector2(0, -200)
+
+[node name="Camera2D" type="Camera2D" parent="."]

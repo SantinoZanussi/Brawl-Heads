@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dgm1nyysp8lmb"]
+
+[ext_resource type="Texture2D" uid="uid://v5ii5xvox1ku" path="res://assets/items-map/arcadeFrame01.png" id="1_arc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arc"]
+size = Vector2(110, 168)
+
+[node name="ArcadeFrame" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_arc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_arc")

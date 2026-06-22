@@ -16,6 +16,8 @@ const C_ORANGE      := Color("#FF6B35")
 # ─── Nodos UI ────────────────────────────────────────────────
 @onready var btn_play     = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay
 @onready var btn_play_2   = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay2
+@onready var btn_play_3   = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay3
+@onready var btn_play_4   = $Screen/MarginContainer/VBoxContainer/Buttons/BtnPlay4
 @onready var btn_settings = $Screen/MarginContainer/VBoxContainer/Buttons/BtnSettings
 @onready var btn_credits  = $Screen/MarginContainer/VBoxContainer/Buttons/BtnCredits
 @onready var press_start  = $Screen/MarginContainer/VBoxContainer/PressStart
@@ -35,6 +37,8 @@ func _ready():
 	
 	btn_play.pressed.connect(_on_play_pressed)
 	btn_play_2.pressed.connect(_on_test_pressed)
+	btn_play_3.pressed.connect(_on_test2_pressed)
+	btn_play_4.pressed.connect(_on_test3_pressed)
 	btn_settings.pressed.connect(_on_settings_pressed)
 	btn_credits.pressed.connect(_on_credits_pressed)
 	
@@ -126,7 +130,13 @@ func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/LobbyMenu.tscn")
 
 func _on_test_pressed():
-	get_tree().change_scene_to_file("res://scenes/maps/virtual.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/arena_fabrica.tscn")
+
+func _on_test2_pressed():
+	get_tree().change_scene_to_file("res://scenes/maps/arena_templo.tscn")
+
+func _on_test3_pressed():
+	get_tree().change_scene_to_file("res://scenes/maps/arena_arcade.tscn")
 
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/SettingsMenu.tscn")

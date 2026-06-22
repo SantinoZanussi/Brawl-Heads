@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxqm1lq8o2w3j"]
+
+[ext_resource type="Texture2D" uid="uid://b6ty5qxhq2wo1" path="res://assets/items-map/backgroundTiles01.png" id="1_pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb"]
+size = Vector2(116, 36)
+
+[node name="PlatformBrick" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pb")
+scale = Vector2(2.5, 2.5)
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pb")

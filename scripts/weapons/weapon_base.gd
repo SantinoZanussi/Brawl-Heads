@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var sprite      = $Sprite2D
 @onready var pickup_area = $Area2D
-@onready var reload_bar = $ReloadBar
+@onready var reload_bar = get_node_or_null("ReloadBar")
 
 var is_held: bool = false
 var owner_player = null

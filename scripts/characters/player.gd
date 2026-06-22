@@ -10,11 +10,17 @@ const FALL_GRAVITY   := 5800.0  # más pesado al caer = feel de Duck Game
 const MAX_FALL_SPEED := 900.0
 
 # ─── Variables de estado ─────────────────────────────────────
-var player_index: int = 0       # 0,1,2,3 → determina qué input leer
+var player_index: int = 0       # 0,1,2,3 → identifica al jugador en la ronda
+var peer_id: int = 1            # id de red del dueño (autoridad) — 1 si es offline
+var controllable: bool = true   # false = dummy/remoto, no lee input local
 var is_dead: bool = false
 var is_crouching: bool = false
 var facing: int = 1             # 1 = derecha, -1 = izquierda
 var held_weapon = null
+
+# ─── Vida ────────────────────────────────────────────────────
+const MAX_HEALTH := 100.0
+var health: float = MAX_HEALTH
 
 # ─── Referencias a nodos ─────────────────────────────────────
 @onready var sprite          = $AnimatedSprite2D
@@ -25,6 +31,7 @@ var held_weapon = null
 
 # ─────────────────────────────────────────────────────────────
 func _ready():
+	add_to_group("players")
 	sprite.play("idle_left")
 	#crouch_collision.disabled = true
 	pass
@@ -32,7 +39,12 @@ func _ready():
 func _physics_process(delta: float):
 	if is_dead:
 		return
-	
+
+	# En una sesión de red, cada cliente solo simula a su propio personaje.
+	# Offline no hay peer, así que is_multiplayer_authority() es true para todos.
+	if not is_multiplayer_authority():
+		return
+
 	_apply_gravity(delta)
 	_handle_movement(delta)	
 	_handle_jump()
@@ -124,8 +136,16 @@ func _update_animation(dir: float):
 			sprite.stop()
 		else:
 			sprite.play(new_anim)
+# ─── Daño ────────────────────────────────────────────────────
+func take_damage(amount: float, impulse: Vector2 = Vector2.ZERO):
+	if is_dead:
+		return
+	health -= amount
+	if health <= 0.0:
+		die(impulse)
+
 # ─── Muerte / Ragdoll ────────────────────────────────────────
-func die(impulse: Vector2):
+func die(impulse: Vector2 = Vector2.ZERO):
 	if is_dead:
 		return
 	is_dead = true
@@ -155,16 +175,23 @@ func die(impulse: Vector2):
 	# Avisar al GameManager
 	GameManager.on_player_died(player_index)
 
-# ─── Helpers de input (lee según player_index) ───────────────
+# ─── Helpers de input ────────────────────────────────────────
+# El juego es LAN: cada cliente usa el set local "p1_*" para controlar SU
+# personaje. _can_control() filtra a dummies (controllable=false) y, en red,
+# a los personajes que no son de este cliente (autoridad).
+func _can_control() -> bool:
+	return controllable and is_multiplayer_authority()
+
 func _get_axis(neg: String, pos: String) -> float:
-	return Input.get_axis("p%d_%s" % [player_index + 1, neg],
-						   "p%d_%s" % [player_index + 1, pos])
+	if not _can_control():
+		return 0.0
+	return Input.get_axis("p1_%s" % neg, "p1_%s" % pos)
 
 func _just_pressed(action: String) -> bool:
-	return Input.is_action_just_pressed("p%d_%s" % [player_index + 1, action])
+	return _can_control() and Input.is_action_just_pressed("p1_%s" % action)
 
 func _is_pressed(action: String) -> bool:
-	return Input.is_action_pressed("p%d_%s" % [player_index + 1, action])
+	return _can_control() and Input.is_action_pressed("p1_%s" % action)
 
 func _handle_pickup():
 	if not _just_pressed("pickup"):

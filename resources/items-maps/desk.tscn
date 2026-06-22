@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://1r282n6dm5g2"]
+
+[ext_resource type="Texture2D" uid="uid://clai84dly6rra" path="res://assets/items-map/desk.png" id="1_desk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
+size = Vector2(150, 22)
+
+[node name="Desk" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_desk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_desk")

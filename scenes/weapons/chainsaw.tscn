@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://nbiqxueyofoi"]
+
+[ext_resource type="Script" path="res://scripts/weapons/chainsaw.gd" id="1_cs"]
+[ext_resource type="Texture2D" uid="uid://cwinbx8o1ka7k" path="res://resources/weapons/chainsaw.png" id="2_cs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs"]
+size = Vector2(52, 24)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_cs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cs")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_cs")

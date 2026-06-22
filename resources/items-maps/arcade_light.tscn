@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://uc5i64vn6p76"]
+
+[ext_resource type="Texture2D" uid="uid://cu2t1s20mmni8" path="res://assets/items-map/arcadeLight.png" id="1_light"]
+
+[node name="ArcadeLight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_light")
